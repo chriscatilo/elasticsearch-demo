@@ -9,9 +9,9 @@ namespace Demo.PropertySearch.Repository.Mock
 
         public string Keyword { get; set; }
 
-        public double? MinValue { get; set; }
+        public double? MinPrice { get; set; }
 
-        public double? MaxValue { get; set; }
+        public double? MaxPrice { get; set; }
 
         public class Location
         {

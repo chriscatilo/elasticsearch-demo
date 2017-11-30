@@ -28,11 +28,17 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
         {
             Assert.That(_stockUnderTest.PropertyID, Is.EqualTo("AUS0000005298"));
         }
-        
+
         [Test(Description = "Office ID should be correct")]
         public void OfficeIdIsCorrect()
         {
             Assert.That(_stockUnderTest.OfficeID, Is.EqualTo("NSWHO"));
+        }
+
+        [Test(Description = "Price should be correct")]
+        public void PriceIsCorrect()
+        {
+            Assert.That(_stockUnderTest.Price, Is.EqualTo(2500000));
         }
     }
 }

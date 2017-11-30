@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Demo.PropertySearch.Utils;
 
 namespace Demo.PropertySearch.Repository.Mock
 {
@@ -57,6 +58,26 @@ namespace Demo.PropertySearch.Repository.Mock
                     .Equals(literalValue, StringComparison.InvariantCultureIgnoreCase));
 
             return value;
+        }
+
+        public static bool IsDescendantElementEqualTo(this XElement el, string propertyName, string value)
+        {
+            var result = el.Descendants(propertyName)
+                .SingleOrDefault()
+                ?.Value
+                .Equals(value, StringComparison.InvariantCultureIgnoreCase);
+
+            return result ?? false;
+        }
+
+        public static bool IsDescendantElementLike(this XElement el, string propertyName, string value)
+        {
+            var result = el.Descendants(propertyName)
+                .SingleOrDefault()
+                ?.Value
+                .IsLike(value);
+
+            return result ?? false;
         }
     }
 }

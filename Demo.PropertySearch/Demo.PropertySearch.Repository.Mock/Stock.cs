@@ -44,7 +44,7 @@ namespace Demo.PropertySearch.Repository.Mock
 
         public string LongDescription => _e.GetSingleStringValue(nameof(LongDescription));
 
-        public string Price => _e.GetSingleStringValue(nameof(Price));
+        public double? Price => _e.GetSingleDoubleValue(nameof(Price));
 
         public string PropertyType => _e.GetSingleStringValue(nameof(PropertyType));
 
