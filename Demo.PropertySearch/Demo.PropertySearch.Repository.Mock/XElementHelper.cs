@@ -15,7 +15,7 @@ namespace Demo.PropertySearch.Repository.Mock
 
         public static int? GetSingleIntValue(this XElement element, string name)
         {
-            var value = element.Elements(name).SingleOrDefault(d => d.Name.LocalName == name)?.Value ?? null;
+            var value = element.GetSingleStringValue(name);
             int result;
             return int.TryParse(value, out result) ? result : default(int?);
         }

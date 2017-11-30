@@ -7,10 +7,10 @@ namespace Demo.PropertySearch.Domain
     {
         string PropertyID { get; }
         string OfficeID { get; }
-        DateTime? CreateDate { get; }
-        DateTime? ModifyDate { get; }
+        DateTime? PropertyCreateDate { get; }
+        DateTime? PropertyModifyDate { get; }
         double? Latitude { get; }
-        double? Longtitude { get; }
+        double? Longitude { get; }
         int? Bathrooms { get; }
         int? Bedrooms { get; }
         int? Receptions { get; }

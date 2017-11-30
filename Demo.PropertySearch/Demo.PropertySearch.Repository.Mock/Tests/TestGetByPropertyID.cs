@@ -1,3 +1,4 @@
+using System;
 using Demo.PropertySearch.Domain;
 using NUnit.Framework;
 
@@ -40,6 +41,19 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
         public void PriceIsCorrect()
         {
             Assert.That(_stockUnderTest.Price, Is.EqualTo(2500000));
+        }
+
+        [Test(Description = "Create Date should be correct")]
+        public void CreateDateIsCorrect()
+        {
+            var expected = DateTime.Parse("2015-12-29T17:00:03.660");
+            Assert.That(_stockUnderTest.PropertyCreateDate, Is.EqualTo(expected));
+        }
+
+        [Test(Description = "Bathrooms should be correct")]
+        public void BathroomsIsCorrect()
+        {
+            Assert.That(_stockUnderTest.Bathrooms, Is.EqualTo(3));
         }
     }
 }

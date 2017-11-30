@@ -20,13 +20,13 @@ namespace Demo.PropertySearch.Repository.Mock
 
         public string OfficeID => _e.GetSingleStringValue(nameof(OfficeID));
 
-        public DateTime? CreateDate => _e.GetSingleDateTimeValue(nameof(CreateDate));
+        public DateTime? PropertyCreateDate => _e.GetSingleDateTimeValue(nameof(PropertyCreateDate));
 
-        public DateTime? ModifyDate => _e.GetSingleDateTimeValue(nameof(ModifyDate));
+        public DateTime? PropertyModifyDate => _e.GetSingleDateTimeValue(nameof(PropertyModifyDate));
 
         public double? Latitude => _e.GetSingleDoubleValue(nameof(Latitude));
 
-        public double? Longtitude => _e.GetSingleDoubleValue(nameof(Longtitude));
+        public double? Longitude => _e.GetSingleDoubleValue(nameof(Longitude));
 
         public int? Bathrooms => _e.GetSingleIntValue(nameof(Bathrooms));
 
