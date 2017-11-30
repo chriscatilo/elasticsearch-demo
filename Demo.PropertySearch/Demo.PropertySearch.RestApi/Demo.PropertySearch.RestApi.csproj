@@ -155,13 +155,25 @@
     <Compile Include="Helpers\NavigationLink.cs" />
     <Compile Include="Helpers\NavigationLinkService.cs" />
     <Compile Include="Helpers\NavigationLinkServiceFactory.cs" />
+    <Compile Include="Helpers\ViewModelHelpers.cs" />
     <Compile Include="Middleware\ExceptionHandler.cs" />
     <Compile Include="Middleware\ExceptionRegistry.cs" />
     <Compile Include="Models\ApiRoutes.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\ILinkedViewModel.cs" />
+    <Compile Include="Models\QueryResults.cs" />
+    <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Demo.PropertySearch.Domain\Demo.PropertySearch.Domain.csproj">
+      <Project>{10aa3dd1-4752-4bdf-af48-4ed92085961f}</Project>
+      <Name>Demo.PropertySearch.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Demo.PropertySearch.Repository.Mock\Demo.PropertySearch.Repository.Mock.csproj">
+      <Project>{b6bf0d2e-4a1a-4b2d-958f-1ed5cad3cadb}</Project>
+      <Name>Demo.PropertySearch.Repository.Mock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.PropertySearch.Utils\Demo.PropertySearch.Utils.csproj">
       <Project>{e8090912-398f-4418-a928-3e3cbad5ff09}</Project>
       <Name>Demo.PropertySearch.Utils</Name>
