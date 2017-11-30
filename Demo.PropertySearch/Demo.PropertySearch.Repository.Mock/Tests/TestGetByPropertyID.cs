@@ -12,7 +12,7 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
         [SetUp]
         public void SetUp()
         {
-            var repository = new StockRepository();
+            var repository = new MockStockRepository();
 
             _stockUnderTest = repository.GetByPropertyID("AUS0000005298");
 

@@ -6,11 +6,11 @@ using System.Xml.Linq;
 using Demo.PropertySearch.Domain;
 namespace Demo.PropertySearch.Repository.Mock
 {
-    public class StockRepository : IStockRepository
+    public class MockStockRepository : IStockRepository
     {
         public static IEnumerable<XElement> Data { get; }
 
-        static StockRepository()
+        static MockStockRepository()
         {
             var propertyFeedResourceName = "Demo.PropertySearch.Repository.Mock.PropertyFeed.xml";
 

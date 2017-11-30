@@ -48,7 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParamsHelper.cs" />
     <Compile Include="Stock.cs" />
-    <Compile Include="StockRepository.cs" />
+    <Compile Include="MockStockRepository.cs" />
     <Compile Include="Tests\TestAllStock.cs" />
     <Compile Include="Tests\TestGetByPropertyID.cs" />
     <Compile Include="Tests\TestSearch.cs" />

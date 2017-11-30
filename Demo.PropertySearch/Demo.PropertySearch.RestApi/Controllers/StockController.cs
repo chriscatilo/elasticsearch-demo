@@ -14,7 +14,7 @@ namespace Demo.PropertySearch.RestApi.Controllers
         
         public StockController()
         {
-            _stockRepository = new StockRepository();
+            _stockRepository = new MockStockRepository();
             _navLinkService = new NavigationLinkServiceFactory().Create(this);
         }
         
