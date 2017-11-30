@@ -26,7 +26,7 @@ namespace Demo.PropertySearch.RestApi.Controllers
                 Version = this.GetType().Assembly.GetName().Version.ToString(),
                 Links = new[]
                     {
-                        _linkLinkService.CreateLink<ApiRoute.Stock>("stock")
+                        _linkLinkService.CreateLink<ApiRoute.StockSearch>("stock")
                     }
                     .Where(link => link != null)
                     .ToArray()

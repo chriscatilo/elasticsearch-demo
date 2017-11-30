@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Demo.PropertySearch.Domain;
 using Demo.PropertySearch.RestApi.Models;
 using Demo.PropertySearch.Utils;
 
 namespace Demo.PropertySearch.RestApi.Helpers
 {
-
     public static class ViewModelExtensions
     {
         public static QueryResults<TModel> CreateViewModel<TModel>
@@ -38,5 +38,7 @@ namespace Demo.PropertySearch.RestApi.Helpers
         {
             return AddLinks(viewModel, links.ToArray());
         }
+
+        public static ViewModel<TBody> CreateBodyViewModel<TBody>(this TBody body) => new ViewModel<TBody>(body);
     }
 }

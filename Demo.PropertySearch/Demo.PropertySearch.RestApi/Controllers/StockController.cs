@@ -17,28 +17,34 @@ namespace Demo.PropertySearch.RestApi.Controllers
             _stockRepository = new StockRepository();
             _navLinkService = new NavigationLinkServiceFactory().Create(this);
         }
-
-        [Route(ApiRoute.Stock.Route, Name = ApiRoute.Stock.Name)]
-        public dynamic Get()
+        
+        [Route(ApiRoute.StockSearch.Route)]
+        public dynamic Get([FromUri]StockSearchParams args)
         {
             var vm = _stockRepository
-                .GetAll()
+                .Search(args)
                 .Select(CreateStockListingViewModel)
                 .CreateViewModel()
-                .AddLinks(_navLinkService.CreateLink("self", Request.RequestUri.AbsoluteUri)); ;
+                .AddLinks(_navLinkService.CreateLink("self", Request.RequestUri.AbsoluteUri));
 
             return Ok(vm);
         }
 
         [Route(ApiRoute.StockById.Route, Name = ApiRoute.StockById.Name)]
-        public dynamic GetById(int id)
+        public dynamic GetById(string id)
         {
-            return Ok();
+            var vm = _stockRepository
+                .GetByPropertyID(id)
+                .CreateBodyViewModel()
+                .AddLinks(_navLinkService.CreateLink("self", Request.RequestUri.AbsoluteUri));
+
+            return Ok(vm);
         }
 
         private ViewModel<IStock> CreateStockListingViewModel(IStock body)
         {
-            var vm = new ViewModel<IStock>(body)
+            var vm = body
+                .CreateBodyViewModel()
                 .AddLinks
                 (
                     _navLinkService.CreateLink("self", new ApiRoute.StockById

@@ -13,11 +13,11 @@ namespace Demo.PropertySearch.RestApi.Models
             public const string Name = nameof(Home);
         }
 
-        public class Stock
+        public class StockSearch
         {
             public const string Route = "stock";
 
-            public const string Name = nameof(Stock);
+            public const string Name = nameof(StockSearch);
         }
 
         public class StockById
