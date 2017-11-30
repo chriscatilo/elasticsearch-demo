@@ -18,7 +18,7 @@ namespace Demo.PropertySearch.RestApi.Controllers
             _navLinkService = new NavigationLinkServiceFactory().Create(this);
         }
         
-        [Route(ApiRoute.StockSearch.Route)]
+        [Route(ApiRoute.StockSearch.Route, Name = ApiRoute.StockSearch.Name)]
         public dynamic Get([FromUri]StockSearchParams args)
         {
             var vm = _stockRepository
