@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Demo.PropertySearch.Repository.Mock
+namespace Demo.PropertySearch.Domain
 {
     public class SearchParams
     {

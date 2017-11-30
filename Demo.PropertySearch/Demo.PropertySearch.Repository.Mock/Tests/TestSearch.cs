@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using Demo.PropertySearch.Domain;
 using NUnit.Framework;
 
 namespace Demo.PropertySearch.Repository.Mock.Tests
@@ -8,12 +9,12 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
     [TestFixture]
     class TestSearch
     {
-        private Repository _repository;
+        private StockRepository _repository;
 
         [SetUp]
         public void SetUp()
         {
-            _repository = new Repository();
+            _repository = new StockRepository();
         }
 
         [TestCase("Bate Bay Road", "AUS0000004306")]

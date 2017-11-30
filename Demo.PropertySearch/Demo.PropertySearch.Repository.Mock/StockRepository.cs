@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-
+using Demo.PropertySearch.Domain;
 namespace Demo.PropertySearch.Repository.Mock
 {
-    public class Repository
+    public class StockRepository : IStockRepository
     {
         public static IEnumerable<XElement> Data { get; }
 
-        static Repository()
+        static StockRepository()
         {
             var propertyFeedResourceName = "Demo.PropertySearch.Repository.Mock.PropertyFeed.xml";
 
@@ -28,10 +24,10 @@ namespace Demo.PropertySearch.Repository.Mock
                 .ToArray();
         }
 
-        public IEnumerable<Stock> GetAll() => Data.Select(Stock.Create);
+        public IEnumerable<IStock> GetAll() => Data.Select(Stock.Create);
 
 
-        public Stock GetByPropertyID(string id)
+        public IStock GetByPropertyID(string id)
         {
             var value = Data
                 .SingleOrDefault(el => el.IsDescendantElementEqualTo(nameof(Stock.PropertyID), id));
@@ -39,7 +35,7 @@ namespace Demo.PropertySearch.Repository.Mock
             return new Stock(value);
         }
 
-        public IEnumerable<Stock> Search(SearchParams args)
+        public IEnumerable<IStock> Search(SearchParams args)
         {
             var stocks = Data
                 .Select(Stock.Create)

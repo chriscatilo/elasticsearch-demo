@@ -6,12 +6,12 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
     [TestFixture]
     class TestAllStock
     {
-        private Repository _repository;
+        private StockRepository _repository;
 
         [SetUp]
         public void SetUp()
         {
-            _repository = new Repository();
+            _repository = new StockRepository();
         }
 
         [Test(Description = "Test get all stock")]

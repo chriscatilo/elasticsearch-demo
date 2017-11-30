@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
+using Demo.PropertySearch.Domain;
 
 namespace Demo.PropertySearch.Repository.Mock
 {
-    public class Stock
+    public class Stock : IStock
     {
         private readonly XElement _e;
 
@@ -50,6 +50,6 @@ namespace Demo.PropertySearch.Repository.Mock
 
         public string PropertyFeatures { get; set; }
 
-        public IEnumerable<ContentResource> ContentResources { get; set; }       
+        public IEnumerable<IContentResource> ContentResources { get; set; }       
     }
 }

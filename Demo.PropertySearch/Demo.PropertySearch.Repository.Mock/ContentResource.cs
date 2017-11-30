@@ -1,6 +1,8 @@
-﻿namespace Demo.PropertySearch.Repository.Mock
+﻿using Demo.PropertySearch.Domain;
+
+namespace Demo.PropertySearch.Repository.Mock
 {
-    public class ContentResource
+    public class ContentResource : IContentResource
     {
         public AssetType AssetType { get; set; }
 

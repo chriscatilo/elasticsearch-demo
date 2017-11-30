@@ -1,3 +1,4 @@
+using Demo.PropertySearch.Domain;
 using NUnit.Framework;
 
 namespace Demo.PropertySearch.Repository.Mock.Tests
@@ -5,12 +6,12 @@ namespace Demo.PropertySearch.Repository.Mock.Tests
     [TestFixture]
     class TestGetByPropertyID
     {
-        private Stock _stockUnderTest;
+        private IStock _stockUnderTest;
 
         [SetUp]
         public void SetUp()
         {
-            var repository = new Repository();
+            var repository = new StockRepository();
 
             _stockUnderTest = repository.GetByPropertyID("AUS0000005298");
 

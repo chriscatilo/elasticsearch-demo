@@ -1,4 +1,4 @@
-﻿namespace Demo.PropertySearch.Repository.Mock
+﻿namespace Demo.PropertySearch.Domain
 {
     public enum AssetType
     {
