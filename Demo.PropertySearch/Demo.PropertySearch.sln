@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch", "Demo.PropertySearch\Demo.PropertySearch.csproj", "{418D7CAB-8CC0-4607-872A-DA5893051A26}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.Repository.Mock", "Demo.PropertySearch.Repository.Mock\Demo.PropertySearch.Repository.Mock.csproj", "{B6BF0D2E-4A1A-4B2D-958F-1ED5CAD3CADB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.Utils", "Demo.PropertySearch.Utils\Demo.PropertySearch.Utils.csproj", "{E8090912-398F-4418-A928-3E3CBAD5FF09}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{418D7CAB-8CC0-4607-872A-DA5893051A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{418D7CAB-8CC0-4607-872A-DA5893051A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{418D7CAB-8CC0-4607-872A-DA5893051A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{418D7CAB-8CC0-4607-872A-DA5893051A26}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6BF0D2E-4A1A-4B2D-958F-1ED5CAD3CADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6BF0D2E-4A1A-4B2D-958F-1ED5CAD3CADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6BF0D2E-4A1A-4B2D-958F-1ED5CAD3CADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
