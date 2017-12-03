@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web;
+﻿using Demo.PropertySearch.Domain;
 
 namespace Demo.PropertySearch.RestApi.Models
 {
@@ -13,13 +12,6 @@ namespace Demo.PropertySearch.RestApi.Models
             public const string Name = nameof(Home);
         }
 
-        public class StockSearch
-        {
-            public const string Route = "stock";
-
-            public const string Name = nameof(StockSearch);
-        }
-
         public class StockById
         {
             public const string Route = "stock/{id}";
@@ -28,5 +20,33 @@ namespace Demo.PropertySearch.RestApi.Models
 
             public string Id { get; set; }
         }
+        public class StockSearch
+        {
+            public const string Route = "stock";
+
+            public const string Name = nameof(StockSearch);
+
+            public class StockSearchParams
+            {
+                public string Keyword { get; set; }
+
+                public double? MinPrice { get; set; }
+
+                public double? MaxPrice { get; set; }
+
+                public SearchParams ToDomainSearchArgs()
+                {
+                    return new SearchParams
+                    {
+                        Keyword = this.Keyword,
+
+                        MinPrice = this.MinPrice,
+
+                        MaxPrice = this.MaxPrice
+                    };
+                }
+            }
+        }
     }
+
 }

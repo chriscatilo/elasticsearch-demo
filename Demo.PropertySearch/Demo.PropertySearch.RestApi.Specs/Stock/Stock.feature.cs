@@ -130,6 +130,34 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Search stock by keyword")]
+        public virtual void SearchStockByKeyword()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search stock by keyword", ((string[])(null)));
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Parameter",
+                        "Argument"});
+            table2.AddRow(new string[] {
+                        "Keyword",
+                        "road"});
+            table2.AddRow(new string[] {
+                        "MinPrice",
+                        "100000"});
+            table2.AddRow(new string[] {
+                        "MaxPrice",
+                        "650000"});
+#line 25
+ testRunner.When("I search for stock successfully", ((string)(null)), table2, "When ");
+#line 30
+ testRunner.Then("I get 3 properties", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -19,7 +19,7 @@ namespace Demo.PropertySearch.RestApi.Controllers
         }
         
         [Route(ApiRoute.StockSearch.Route, Name = ApiRoute.StockSearch.Name)]
-        public dynamic Get([FromUri]StockSearchParams args)
+        public dynamic Get([FromUri]ApiRoute.StockSearch.StockSearchParams args)
         {
             var vm = _stockRepository
                 .Search(args)

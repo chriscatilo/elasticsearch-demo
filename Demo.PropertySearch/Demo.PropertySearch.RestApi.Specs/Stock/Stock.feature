@@ -20,3 +20,11 @@ Scenario: Get stock by id
 		| Bedrooms           | 4                       |
 		| Receptions         | 0                       |
 		| PropertyStatus     | 0                       |
+
+Scenario: Search stock by keyword
+	When I search for stock successfully
+		| Parameter | Argument |
+		| Keyword   | road     |
+		| MinPrice  | 100000   |
+		| MaxPrice  | 650000   |
+	Then I get 3 properties

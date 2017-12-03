@@ -1,4 +1,5 @@
-﻿using Demo.PropertySearch.RestApi.Specs.Properties;
+﻿using Demo.PropertySearch.RestApi.Specs.Helpers;
+using Demo.PropertySearch.RestApi.Specs.Properties;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -47,6 +48,15 @@ namespace Demo.PropertySearch.RestApi.Specs
         public GetResponse<T> Get<T>(string partialLocation)
         {
             var uri = new Uri($"{Settings.Default.OwinHostLocation}/{partialLocation}");
+
+            return Get<T>(uri);
+        }
+
+        public GetResponse<T> Get<T>(string partialLocation, object args)
+        {
+            var queryString = args.ToQueryString();
+
+            var uri = new Uri($"{Settings.Default.OwinHostLocation}/{partialLocation}{queryString}");
 
             return Get<T>(uri);
         }

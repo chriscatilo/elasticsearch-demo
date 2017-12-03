@@ -92,5 +92,29 @@ namespace Demo.PropertySearch.RestApi.Specs
                 Assert.That(actualValue, Is.EqualTo(expectedValue));
             }
         }
+
+        [When(@"I search for stock (successfully|unsuccessfully)")]
+        public void WhenISearchForStock(SuccessAdverbs successAdverb, Table table)
+        {
+            var args = table.To<ApiRoute.StockSearch.StockSearchParams>();
+
+            var apiClient = new ApiClient();
+
+            var response = apiClient.Get<QueryResults<ViewModel<StockModel>>>(ApiRoute.StockSearch.Route, args);
+
+            TestContext.ApiResponse = response.Message;
+
+            if (successAdverb == SuccessAdverbs.Unsuccessfully)
+            {
+                return;
+            }
+
+            Assert.That(TestContext.ApiResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+            TestContext.RetrievedStockSearch = response.Content;
+
+            Assert.That(TestContext.RetrievedStockSearch, Is.Not.Null);
+        }
+
     }
 }

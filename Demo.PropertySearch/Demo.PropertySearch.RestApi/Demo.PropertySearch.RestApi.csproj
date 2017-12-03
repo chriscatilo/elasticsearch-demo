@@ -165,7 +165,6 @@
     <Compile Include="Models\ILinkedViewModel.cs" />
     <Compile Include="Models\QueryResults.cs" />
     <Compile Include="Models\StockModel.cs" />
-    <Compile Include="Models\StockSearchParams.cs" />
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
