@@ -156,6 +156,7 @@
     <Compile Include="Helpers\NavigationLinkService.cs" />
     <Compile Include="Helpers\NavigationLinkServiceFactory.cs" />
     <Compile Include="Helpers\RepositoryExtensions.cs" />
+    <Compile Include="Helpers\StockExtensions.cs" />
     <Compile Include="Helpers\ViewModelHelpers.cs" />
     <Compile Include="Middleware\ExceptionHandler.cs" />
     <Compile Include="Middleware\ExceptionRegistry.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\ILinkedViewModel.cs" />
     <Compile Include="Models\QueryResults.cs" />
+    <Compile Include="Models\StockModel.cs" />
     <Compile Include="Models\StockSearchParams.cs" />
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

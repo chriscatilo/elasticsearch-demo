@@ -67,9 +67,11 @@
       <DependentUpon>DemoSpecs.feature</DependentUpon>
     </Compile>
     <Compile Include="Demo\FooScenarioArgs.cs" />
+    <Compile Include="Helpers\TableExtensions.cs" />
     <Compile Include="ISpecArgs.cs" />
     <Compile Include="Models\Affirmations.cs" />
     <Compile Include="Models\SuccessAdverbs.cs" />
+    <Compile Include="Models\TestRunSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Demo\DemoTestSteps.cs" />
     <Compile Include="SpecArgsFactory.cs" />
@@ -88,6 +90,7 @@
       <Name>Demo.PropertySearch.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

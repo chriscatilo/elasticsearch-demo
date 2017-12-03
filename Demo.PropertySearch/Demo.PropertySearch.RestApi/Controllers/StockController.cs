@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Web.Http;
-using Demo.PropertySearch.Domain;
+﻿using Demo.PropertySearch.Domain;
 using Demo.PropertySearch.Repository.Mock;
 using Demo.PropertySearch.RestApi.Helpers;
 using Demo.PropertySearch.RestApi.Models;
+using System.Linq;
+using System.Web.Http;
 
 namespace Demo.PropertySearch.RestApi.Controllers
 {
@@ -35,15 +35,17 @@ namespace Demo.PropertySearch.RestApi.Controllers
         {
             var vm = _stockRepository
                 .GetByPropertyID(id)
+                .ToStockModel()
                 .CreateBodyViewModel()
                 .AddLinks(_navLinkService.CreateLink("self", Request.RequestUri.AbsoluteUri));
 
             return Ok(vm);
         }
 
-        private ViewModel<IStock> CreateStockListingViewModel(IStock body)
+        private ViewModel<StockModel> CreateStockListingViewModel(IStock body)
         {
             var vm = body
+                .ToStockModel()
                 .CreateBodyViewModel()
                 .AddLinks
                 (

@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.Domain"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.RestApi", "Demo.PropertySearch.RestApi\Demo.PropertySearch.RestApi.csproj", "{F0160D1B-1B92-434A-91A5-B54AB8BA1D73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.RestApi.Specs", "Demo.PropertySearch.RestApi.Specs\Demo.PropertySearch.RestApi.Specs.csproj", "{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.Specs.Utils", "Demo.PropertySearch.Specs.Utils\Demo.PropertySearch.Specs.Utils.csproj", "{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Domain", "01 Domain", "{2FA0E1E5-BBD4-4894-B82A-EA90067FB35F}"
@@ -22,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Utils", "04 Utils", "{74AF3130-4889-4F37-8182-B2377C4E7FD6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Presentation", "02 Presentation", "{BFFD769E-47DA-4E34-BACC-F3F3467575BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.RestApi.Specs", "Demo.PropertySearch.RestApi.Specs\Demo.PropertySearch.RestApi.Specs.csproj", "{95EA9C18-52FC-4305-8C01-84488D64063F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +45,14 @@ Global
 		{F0160D1B-1B92-434A-91A5-B54AB8BA1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0160D1B-1B92-434A-91A5-B54AB8BA1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0160D1B-1B92-434A-91A5-B54AB8BA1D73}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EA9C18-52FC-4305-8C01-84488D64063F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EA9C18-52FC-4305-8C01-84488D64063F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EA9C18-52FC-4305-8C01-84488D64063F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EA9C18-52FC-4305-8C01-84488D64063F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,7 +62,7 @@ Global
 		{E8090912-398F-4418-A928-3E3CBAD5FF09} = {74AF3130-4889-4F37-8182-B2377C4E7FD6}
 		{10AA3DD1-4752-4BDF-AF48-4ED92085961F} = {2FA0E1E5-BBD4-4894-B82A-EA90067FB35F}
 		{F0160D1B-1B92-434A-91A5-B54AB8BA1D73} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
-		{BBAB9819-79DB-4DE1-AEC4-490730A0A7D9} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6} = {74AF3130-4889-4F37-8182-B2377C4E7FD6}
+		{95EA9C18-52FC-4305-8C01-84488D64063F} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
 	EndGlobalSection
 EndGlobal
