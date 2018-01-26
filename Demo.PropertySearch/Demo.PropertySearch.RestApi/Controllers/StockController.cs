@@ -4,9 +4,11 @@ using Demo.PropertySearch.RestApi.Helpers;
 using Demo.PropertySearch.RestApi.Models;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Demo.PropertySearch.RestApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StockController : ApiController
     {
         private readonly NavigationLinkService _navLinkService;
@@ -35,17 +37,17 @@ namespace Demo.PropertySearch.RestApi.Controllers
         {
             var vm = _stockRepository
                 .GetByPropertyID(id)
-                .ToStockModel()
+                ?.ToStockModel()
                 .CreateBodyViewModel()
                 .AddLinks(_navLinkService.CreateLink("self", Request.RequestUri.AbsoluteUri));
 
-            return Ok(vm);
+            return vm == null ? NotFound() : Ok(vm) as dynamic;
         }
 
-        private ViewModel<StockModel> CreateStockListingViewModel(IStock body)
+        private ViewModel<StockListingModel> CreateStockListingViewModel(IStock body)
         {
             var vm = body
-                .ToStockModel()
+                .ToStockListingModel()
                 .CreateBodyViewModel()
                 .AddLinks
                 (

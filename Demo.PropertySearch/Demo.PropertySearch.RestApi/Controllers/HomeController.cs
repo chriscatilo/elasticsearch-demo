@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Demo.PropertySearch.RestApi.Helpers;
 using Demo.PropertySearch.RestApi.Models;
 
 namespace Demo.PropertySearch.RestApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class HomeController : ApiController
     {
         private readonly NavigationLinkService _linkLinkService;

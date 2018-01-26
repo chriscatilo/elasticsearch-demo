@@ -12,7 +12,7 @@ namespace Demo.PropertySearch.Repository.Mock
 
         static MockStockRepository()
         {
-            var propertyFeedResourceName = "Demo.PropertySearch.Repository.Mock.PropertyFeed.xml";
+            var propertyFeedResourceName = "Demo.PropertySearch.Repository.Mock.PropertyFeed2.xml";
 
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(propertyFeedResourceName);
             
@@ -32,7 +32,7 @@ namespace Demo.PropertySearch.Repository.Mock
             var value = Data
                 .SingleOrDefault(el => el.IsDescendantElementEqualTo(nameof(Stock.PropertyID), id));
 
-            return new Stock(value);
+            return value == null ? null : new Stock(value);
         }
 
         public IEnumerable<IStock> Search(SearchParams args)

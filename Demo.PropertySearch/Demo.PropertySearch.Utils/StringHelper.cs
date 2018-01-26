@@ -144,7 +144,7 @@ namespace Demo.PropertySearch.Utils
 
         public static bool IsLike(this string source, string toCheck, StringComparison comp = StringComparison.InvariantCultureIgnoreCase)
         {
-            return source.IndexOf(toCheck, comp) >= 0;
+            return  source.IsNotNullOrEmpty() && (source.IndexOf(toCheck, comp) >= 0);
         }
     }
 }

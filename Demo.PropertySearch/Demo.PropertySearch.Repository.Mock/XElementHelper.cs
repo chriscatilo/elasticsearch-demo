@@ -11,7 +11,7 @@ namespace Demo.PropertySearch.Repository.Mock
     internal static class XElementHelper
     {
         public static string GetSingleStringValue(this XElement element, string name) =>
-            element.Descendants(name).SingleOrDefault()?.Value;
+            element?.Descendants(name).FirstOrDefault()?.Value;
 
         public static int? GetSingleIntValue(this XElement element, string name)
         {

@@ -1,4 +1,5 @@
 ﻿using Demo.PropertySearch.Domain;
+using Demo.PropertySearch.Utils;
 
 namespace Demo.PropertySearch.RestApi.Models
 {
@@ -45,8 +46,12 @@ namespace Demo.PropertySearch.RestApi.Models
                         MaxPrice = this.MaxPrice
                     };
                 }
+
+                public bool IsEmpty()
+                {
+                    return Keyword.IsNullOrEmpty() && MinPrice == null && MaxPrice == null;
+                }
             }
         }
     }
-
 }

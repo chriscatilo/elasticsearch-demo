@@ -27,5 +27,24 @@ namespace Demo.PropertySearch.RestApi.Helpers
                 PropertyType = source.PropertyType
             };
         }
+        public static StockListingModel ToStockListingModel(this IStock source)
+        {
+            return new StockListingModel()
+            {
+                PropertyID = source.PropertyID,
+                OfficeID = source.OfficeID,
+                Latitude = source.Latitude,
+                Longitude = source.Longitude,
+                Bathrooms = source.Bathrooms,
+                Bedrooms = source.Bedrooms,
+                Receptions = source.Receptions,
+                PropertyStatus = source.PropertyStatus,
+                AddressLine1 = source.AddressLine1,
+                AddressLine2 = source.AddressLine2,
+                Description = source.Description,
+                Price = source.Price,
+                PropertyType = source.PropertyType
+            };
+        }
     }
 }

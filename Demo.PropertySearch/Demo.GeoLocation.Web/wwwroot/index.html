@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Locate By Coordinates</title>
+
+    <!-- Get API key for Google Maps JavaScript API and use it in the place of YOUR-KEY -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=MAP_API_KEY"></script>
+
+    <script type="text/javascript">
+
+        function getPropertyButtonClicked(o) {
+
+            var propertyId = document.getElementById('propertyIdInput').value;
+
+            getProperty(propertyId)
+                .then(onSuccess, onError);
+
+            function onSuccess(property) {
+
+                showPropertyDetails();
+
+                var latitude = property.body.latitude;
+
+                var longitude = property.body.longitude;
+
+                var latlong = new google.maps.LatLng(latitude, longitude);
+
+                showLocationToMap(latlong);
+
+                function showPropertyDetails() {
+                    document.getElementById('propertyDetails').setAttribute('style', 'display:block');
+                    var text = JSON.stringify(property.body, null, 4);
+                    document.getElementById('propertyDetailsTextarea').value = text;
+                }
+            }
+
+            function onError(e) {
+                debugger;
+            };
+        }
+
+        function getProperty(propertyId) {
+            return new Promise(function (resolve, reject) {
+
+                var xmlHttp = new XMLHttpRequest();
+
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        var json = JSON.parse(xmlHttp.responseText);
+                        resolve(json);
+                    }
+
+                }
+
+                var url = 'http://localhost:18623/stock/' + propertyId;
+                xmlHttp.open("GET", url, true); // false for synchronous request
+                xmlHttp.send(null);
+            });
+        }
+
+        function setLocationCoordinatesClicked() {
+
+            document.getElementById('propertyDetails').setAttribute('style', 'display:none');
+
+            var latitude = document.getElementById('latitudeInput').value,
+                longitude = document.getElementById('longitudeInput').value;
+            
+            var latlong = new google.maps.LatLng(latitude, longitude);
+
+            showLocationToMap(latlong);
+        }
+
+        function showLocationToMap(latLong) {
+
+            var map = createMap();
+
+            markPropertyToMap(map);
+
+            buildAddressTypeButtons();
+
+            function createMap() {
+                var mapOptions = {
+                    center: latLong,
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("mapArea"), mapOptions);
+
+                return map;
+            }
+
+            function markPropertyToMap(map) {
+                var marker = new google.maps.Marker({
+                    position: latLong,
+                    animation: google.maps.Animation.BOUNCE,
+                    map: map
+                });
+            }
+
+            function buildAddressTypeButtons() {
+
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({ 'latLng': latLong }, function (payload, status) {
+
+                    if (status !== google.maps.GeocoderStatus.OK || !payload)
+                        alert("Could not get the geolocation information");
+
+                    showGeocodePayload(payload);
+
+                    createAddressTypeButtons(payload);
+
+                    function showGeocodePayload() {
+                        var json = JSON.stringify(payload, null, 4);
+                        document.getElementById('text').innerHTML = json;
+                    }
+
+                    function createAddressTypeButtons(payload) {
+
+                        var container = document.getElementById('addressTypeButtons');
+                        while (container.firstChild) {
+                            container.removeChild(container.firstChild);
+                        }
+
+                        payload.forEach(function (item, index) {
+
+                            if (!item.types || item.types.length === 0)
+                                return;
+
+                            var addressComponentType = item.types.reduce(function (agg, cur) {
+                                agg = !agg ? cur : agg + ' : ' + cur;
+                                return agg;
+                            });
+
+                            var label = document.createElement('label');
+                            label.innerHTML = addressComponentType;
+                            label.setAttribute('style', 'margin: 0 10px 0 0');
+                            container.appendChild(label);
+
+                            var name = item.address_components.reduce(function (agg, cur) {
+                                agg = !agg ? cur.long_name : agg + ', ' + cur.long_name;
+                                return agg;
+                            }, undefined);
+
+                            var button = document.createElement("input");
+                            button.setAttribute('style', 'margin:5px 0');
+                            button.type = 'button';
+                            button.value = name;
+                            button.onclick = updateMapByAddressType(payload, index);
+                            container.appendChild(button);
+                            container.appendChild(document.createElement('br'));
+                        });
+                    }
+                });
+            }
+
+            function updateMapByAddressType(payload, index) {
+
+                return function () {
+
+                    var map = createMap();
+
+                    markPropertyAndBoundary(map);
+
+                    drawBoundary(map);
+                };
+
+                function createMap() {
+                    var mapOptions = {
+                        center: latLong,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById("mapArea"), mapOptions);
+                    return map;
+                }
+
+                function markPropertyAndBoundary(map) {
+
+                    var geoAddress = payload[index].geometry;
+
+                    map.fitBounds(geoAddress.bounds || geoAddress.viewport);
+
+                    var propertyMarker = new google.maps.Marker({
+                        position: latLong,
+                        animation: google.maps.Animation.BOUNCE,
+                        map: map
+                    });
+
+                    var addressMarker = new google.maps.Marker({
+                        position: geoAddress.location,
+                        map: map
+                    });
+                }
+
+                function drawBoundary(map) {
+
+                    var geoAddress = payload[index].geometry;
+
+                    var rectangle = new google.maps.Rectangle({
+                        strokeColor: "#FF0000",
+                        strokeWeight: 4, 
+                        map: map, 
+                        bounds: geoAddress.bounds || geoAddress.viewport
+                    });
+                }
+            }
+        }
+
+        function onError(error) {
+
+            switch (error.code) {
+
+                case PERMISSION_DENIED:
+
+                    alert("User denied permission");
+
+                    break;
+
+                case TIMEOUT:
+
+                    alert("Geolocation timed out");
+
+                    break;
+
+                case POSITION_UNAVAILABLE:
+
+                    alert("Geolocation information is not available");
+
+                    break;
+
+                default:
+
+                    alert("Unknown error");
+
+                    break;
+
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <form>
+        <fieldset>
+            <label>Property Id</label>
+            <input id="propertyIdInput" value="GBBRRSBHS170030" required/>
+            <input type="button" onclick="getPropertyButtonClicked()" value="Get Property"/>
+            <br/>
+            <br/>
+            <label>Latititude/Longitude</label>
+            <input id="latitudeInput" value="56.829739" required/>
+            <input id="longitudeInput" value="-2.279644" required/>
+            <input type="button" onclick="setLocationCoordinatesClicked()" value="Get Location"/>
+            <br/>
+            <br/>
+            <div id="propertyDetails" style="display: none">
+                <label>Property Details</label>
+                <textarea id="propertyDetailsTextarea" style="width: 100%; height: 17em" disabled="disabled"></textarea>
+            </div>
+            <br/>
+            <br/>
+            <label>Update map by Address Type</label>
+            <div id="addressTypeButtons" style="min-height: 2em; padding-top: 5px"></div>
+            <label>Map</label>
+            <div id="mapArea" style="height: 500px; width: 500px; border: solid 1px lightgray"></div>
+            <br/>
+            <br/>
+            <label>Geo Location Details</label>
+            <textarea id="text" style="width: 100%; height: 600px" disabled="disabled"></textarea>
+        </fieldset>
+    </form>
+
+
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.Repository.Mock", "Demo.PropertySearch.Repository.Mock\Demo.PropertySearch.Repository.Mock.csproj", "{B6BF0D2E-4A1A-4B2D-958F-1ED5CAD3CADB}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Presentation", "02 Presentation", "{BFFD769E-47DA-4E34-BACC-F3F3467575BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PropertySearch.RestApi.Specs", "Demo.PropertySearch.RestApi.Specs\Demo.PropertySearch.RestApi.Specs.csproj", "{95EA9C18-52FC-4305-8C01-84488D64063F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GeoLocation.Web", "Demo.GeoLocation.Web\Demo.GeoLocation.Web.csproj", "{5C29192B-A37F-4947-A649-17BFBEDA29E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{95EA9C18-52FC-4305-8C01-84488D64063F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95EA9C18-52FC-4305-8C01-84488D64063F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95EA9C18-52FC-4305-8C01-84488D64063F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C29192B-A37F-4947-A649-17BFBEDA29E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C29192B-A37F-4947-A649-17BFBEDA29E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C29192B-A37F-4947-A649-17BFBEDA29E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C29192B-A37F-4947-A649-17BFBEDA29E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,9 @@ Global
 		{F0160D1B-1B92-434A-91A5-B54AB8BA1D73} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
 		{A6DC376D-227E-4ADE-84D4-9AF2BB0273B6} = {74AF3130-4889-4F37-8182-B2377C4E7FD6}
 		{95EA9C18-52FC-4305-8C01-84488D64063F} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
+		{5C29192B-A37F-4947-A649-17BFBEDA29E5} = {BFFD769E-47DA-4E34-BACC-F3F3467575BF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D73690A5-2CB9-4F68-94BA-5A75BDAF4AB3}
 	EndGlobalSection
 EndGlobal
