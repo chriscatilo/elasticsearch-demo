@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Demo.PropertySearch.Domain;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
-using Demo.PropertySearch.Domain;
 namespace Demo.PropertySearch.Repository.Mock
 {
     public class MockStockRepository : IStockRepository

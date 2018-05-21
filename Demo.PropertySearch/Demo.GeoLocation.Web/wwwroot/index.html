@@ -7,14 +7,14 @@
     <title>Locate By Coordinates</title>
 
     <!-- Get API key for Google Maps JavaScript API and use it in the place of YOUR-KEY -->
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=MAP_API_KEY"></script>
+    
+<script src="https://maps.googleapis.com/maps/api/js?key=MAP_API_KEY"></script>
 
     <script type="text/javascript">
 
-        function getPropertyButtonClicked(o) {
+        function getPropertyButtonClicked(input) {
 
-            var propertyId = document.getElementById('propertyIdInput').value;
+            var propertyId = input || document.getElementById('propertyIdInput').value;
 
             getProperty(propertyId)
                 .then(onSuccess, onError);
@@ -68,13 +68,41 @@
 
             var latitude = document.getElementById('latitudeInput').value,
                 longitude = document.getElementById('longitudeInput').value;
-            
+
             var latlong = new google.maps.LatLng(latitude, longitude);
 
             showLocationToMap(latlong);
         }
 
-        function showLocationToMap(latLong) {
+        function setPlaceIdClicked() {
+
+            document.getElementById('propertyDetails').setAttribute('style', 'display:none');
+
+            var placeId = document.getElementById('placeId').value;
+
+            var geocoder = new google.maps.Geocoder;
+
+            geocoder.geocode({ 'placeId': placeId }, function (results, status) {
+                if (status === 'OK') {
+
+
+                    if (results[0]) {
+                        var coordinates = results[0].geometry.location;
+                        var lat = coordinates.lat(),
+                            lng = coordinates.lng();
+                        var latlng = new google.maps.LatLng(lat, lng);
+                        //showLocationToMap(latlng);
+                        updateMapByAddressType(results, 0, latlng)();
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+
+        function showLocationToMap(latLng) {
 
             var map = createMap();
 
@@ -84,7 +112,7 @@
 
             function createMap() {
                 var mapOptions = {
-                    center: latLong,
+                    center: latLng,
                     zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -96,7 +124,7 @@
 
             function markPropertyToMap(map) {
                 var marker = new google.maps.Marker({
-                    position: latLong,
+                    position: latLng,
                     animation: google.maps.Animation.BOUNCE,
                     map: map
                 });
@@ -106,7 +134,7 @@
 
                 var geocoder = new google.maps.Geocoder();
 
-                geocoder.geocode({ 'latLng': latLong }, function (payload, status) {
+                geocoder.geocode({ 'latLng': latLng }, function (payload, status) {
 
                     if (status !== google.maps.GeocoderStatus.OK || !payload)
                         alert("Could not get the geolocation information");
@@ -151,63 +179,63 @@
                             button.setAttribute('style', 'margin:5px 0');
                             button.type = 'button';
                             button.value = name;
-                            button.onclick = updateMapByAddressType(payload, index);
+                            button.onclick = updateMapByAddressType(payload, index, latLng);
                             container.appendChild(button);
                             container.appendChild(document.createElement('br'));
                         });
                     }
                 });
             }
+        }
 
-            function updateMapByAddressType(payload, index) {
+        function updateMapByAddressType(payload, index, latLng) {
 
-                return function () {
+            return function () {
 
-                    var map = createMap();
+                var map = createMap();
 
-                    markPropertyAndBoundary(map);
+                markPropertyAndBoundary(map);
 
-                    drawBoundary(map);
+                drawBoundary(map);
+            };
+
+            function createMap() {
+                var mapOptions = {
+                    center: latLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
+                var map = new google.maps.Map(document.getElementById("mapArea"), mapOptions);
+                return map;
+            }
 
-                function createMap() {
-                    var mapOptions = {
-                        center: latLong,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    var map = new google.maps.Map(document.getElementById("mapArea"), mapOptions);
-                    return map;
-                }
+            function markPropertyAndBoundary(map) {
 
-                function markPropertyAndBoundary(map) {
+                var geoAddress = payload[index].geometry;
 
-                    var geoAddress = payload[index].geometry;
+                map.fitBounds(geoAddress.bounds || geoAddress.viewport);
 
-                    map.fitBounds(geoAddress.bounds || geoAddress.viewport);
+                var propertyMarker = new google.maps.Marker({
+                    position: latLng,
+                    animation: google.maps.Animation.BOUNCE,
+                    map: map
+                });
 
-                    var propertyMarker = new google.maps.Marker({
-                        position: latLong,
-                        animation: google.maps.Animation.BOUNCE,
-                        map: map
-                    });
+                var addressMarker = new google.maps.Marker({
+                    position: geoAddress.location,
+                    map: map
+                });
+            }
 
-                    var addressMarker = new google.maps.Marker({
-                        position: geoAddress.location,
-                        map: map
-                    });
-                }
+            function drawBoundary(map) {
 
-                function drawBoundary(map) {
+                var geoAddress = payload[index].geometry;
 
-                    var geoAddress = payload[index].geometry;
-
-                    var rectangle = new google.maps.Rectangle({
-                        strokeColor: "#FF0000",
-                        strokeWeight: 4, 
-                        map: map, 
-                        bounds: geoAddress.bounds || geoAddress.viewport
-                    });
-                }
+                var rectangle = new google.maps.Rectangle({
+                    strokeColor: "#FF0000",
+                    strokeWeight: 4,
+                    map: map,
+                    bounds: geoAddress.bounds || geoAddress.viewport
+                });
             }
         }
 
@@ -251,28 +279,33 @@
     <form>
         <fieldset>
             <label>Property Id</label>
-            <input id="propertyIdInput" value="GBBRRSBHS170030" required/>
-            <input type="button" onclick="getPropertyButtonClicked()" value="Get Property"/>
-            <br/>
-            <br/>
+            <input id="propertyIdInput" value="GBBRRSBHS170030" required />
+            <input type="button" onclick="getPropertyButtonClicked()" value="Get Property" />
+            <br />
+            <br />
             <label>Latititude/Longitude</label>
-            <input id="latitudeInput" value="56.829739" required/>
-            <input id="longitudeInput" value="-2.279644" required/>
-            <input type="button" onclick="setLocationCoordinatesClicked()" value="Get Location"/>
-            <br/>
-            <br/>
+            <input id="latitudeInput" value="51.536946" required />
+            <input id="longitudeInput" value="-0.1165464" required />
+            <input type="button" onclick="setLocationCoordinatesClicked()" value="Get Location" />
+            <br />
+            <br />
+            <label>Place ID</label>
+            <input id="placeId" value="ChIJ_WCaIxMbdkgRT9wHl_GMioc" required />
+            <input type="button" onclick="setPlaceIdClicked()" value="Get Place" />
+            <br />
+            <br />
             <div id="propertyDetails" style="display: none">
                 <label>Property Details</label>
                 <textarea id="propertyDetailsTextarea" style="width: 100%; height: 17em" disabled="disabled"></textarea>
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <label>Update map by Address Type</label>
             <div id="addressTypeButtons" style="min-height: 2em; padding-top: 5px"></div>
             <label>Map</label>
             <div id="mapArea" style="height: 500px; width: 500px; border: solid 1px lightgray"></div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <label>Geo Location Details</label>
             <textarea id="text" style="width: 100%; height: 600px" disabled="disabled"></textarea>
         </fieldset>
